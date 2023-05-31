@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import usuarioService from '../services/usuarioService';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
+import usuarioService from '../services/usuarioService';
 
 const Login = () => {
-
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -28,27 +26,31 @@ const Login = () => {
         Alert.alert('Email ou senha inválidos');
       });
   };
+
   const handleCadastro = () => {
     navigation.navigate('Cadastro');
   };
+
   return (
     <View style={styles.wrapper}>
+      <Image source={require('../imagens/logo.png')} style={styles.logo} />
+
       <View style={styles.contentLogin}>
-        <Text style={styles.heading}>Login</Text>
+        <Text style={styles.heading}>Entre Agora</Text>
 
         <View style={styles.boxLogin}>
           <TextInput
             style={styles.input}
             placeholder="E-mail"
-            placeholderTextColor='#FFFFFF'
+            placeholderTextColor="#FFFFFF"
             value={email}
             onChangeText={(text) => setEmail(text)}
             required
           />
           <TextInput
             style={styles.input}
-            placeholder="Senha"
-            placeholderTextColor='#FFFFFF'
+            placeholder="Digite sua  Senha"
+            placeholderTextColor="#FFFFFF"
             secureTextEntry
             value={senha}
             onChangeText={(text) => setSenha(text)}
@@ -57,14 +59,6 @@ const Login = () => {
           {error && <Text style={styles.errorMessage}>{error}</Text>}
           <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Entrar</Text>
-          </TouchableOpacity>
-        </View>
-
-   
-
-        <View style={styles.boxLembrarSenha}>
-          <TouchableOpacity style={styles.cadastroButton} onPress={() => navigation.navigate('Cadastro')} color="#f72585">
-            <Text style={styles.cadastroButtonText}>Crie uma conta</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -79,90 +73,56 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#080B16',
   },
-  contentLogin: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: '#333',
-    borderRadius: 7,
-    padding: 40,
-    width:"100%",
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 8,
-    gap: 5,
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 30,
   },
+
   heading: {
     fontSize: 20,
     fontWeight: '500',
     marginBottom: 20,
-    color: '#fff',
+    color: '#FFFFFF',
+    
   },
-  boxLogin: {
-    position: 'relative',
-    width: '50%',
-  },
+
   errorMessage: {
-    position: 'absolute',
-    bottom: -20,
-    left: 0,
     fontSize: 14,
     color: '#4125f7',
     margin: 0,
   },
   input: {
-    padding: 15,
+    padding: 20,
     fontSize: 14,
-    borderWidth: 1,
+    borderWidth: 2,
     marginBottom: 20,
     marginTop: 5,
-    borderRadius: 4,
- 
-    backgroundColor: '#444',
-    color: '#fff',
+    color: '#FFFFFF',
+    backgroundColor: '#',
+    borderColor: '#890A1F',
+    borderRadius: 15,
+    paddingHorizontal: 80,
+    paddingVertical: 15,
   },
   button: {
-    backgroundColor: 'linear-gradient(to right, #f72585, #ff0676)',
+    alignSelf: 'center',
+    backgroundColor: '#890A1F',
     borderRadius: 4,
-    padding: 15,
-    marginBottom: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    height:45,
+    with:197,
+    top:55
   },
   buttonText: {
-    color: '#f72585',
-    fontSize: 18,
-  },
-  boxLembrarSenha: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-  },
-  link: {
-    color: '#f72585',
-    fontSize: 16,
-    textDecorationLine: 'underline',
-  },
-  cadastroButton: {
-    backgroundColor: '#f72585',
-    borderRadius: 4,
-    padding: 15,
-    marginBottom: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    
-  },
-  cadastroButtonText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontSize: 18,
   },
 };
+
 export default Login;

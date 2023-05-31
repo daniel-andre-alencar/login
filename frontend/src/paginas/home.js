@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
@@ -16,18 +16,22 @@ const Home = () => {
   return (
     <View style={styles.page}>
       <View style={styles.formLogin}>
-        <Text style={styles.title}>Home</Text>
-        <Text style={styles.description}>Bem-vindo à página inicial!</Text>
-        
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.btn} onPress={handleLogin}>
-            <Text style={styles.btnText}>Login</Text>
-          </TouchableOpacity>
-          <View style={styles.buttonSpacer} />
-          <TouchableOpacity style={styles.btn} onPress={handleCadastro}>
+        <View style={styles.logoContainer}>
+          <TouchableOpacity style={styles.cadastroButton} onPress={handleCadastro}>
             <Text style={styles.btnText}>Cadastro</Text>
           </TouchableOpacity>
+          <Image
+            source={require('../imagens/logo.png')}
+            style={styles.logo}
+          />
         </View>
+        <Image
+          source={require('../imagens/im.png')}
+          style={styles.image}
+        />
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.btnText}>Login</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -38,52 +42,53 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#080B16',
   },
-  formLogin: {
-    backgroundColor: '#333',
-    borderRadius: 7,
-    padding: 40,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    marginBottom: 5,
+
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+    position: 'relative',
   },
-  title: {
-    padding: 0,
-    margin: 0,
-    fontWeight: '500',
-    fontSize: 28,
-    color: '#FFFFFF',
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 10,
   },
-  description: {
-    fontSize: 14,
-    color: '#FFFFFF',
-    marginBottom: 25,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    padding: 0,
-  },
-  btn: {
-    backgroundColor: '#f72585',
+  cadastroButton: {
+    position: 'absolute',
+    width: 100,
+    height: 35,
+    left: 10, // Altere o valor para ajustar a posição à esquerda
+    top: -31,
+    backgroundColor: 'transparent', // Altere a cor de fundo para transparente
+    borderWidth: 2, // Adicione a largura da borda
+    borderColor: '#890A1F', // Defina a cor da borda
     borderRadius: 4,
-    paddingVertical: 20,
-    paddingHorizontal: 40,
-    margin: 0,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  image: {
+    width: 350,
+    height: 350,
+    marginBottom: 10,
+  },
+  loginButton: {
+    alignSelf: 'center',
+    backgroundColor: '#890A1F',
+    borderRadius: 4,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 20,
+    borderRadius: 15,
+    height:50,
+    with:132,
+   
   },
   btnText: {
     color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '600',
-  },
-  buttonSpacer: {
-    width: 10, // Espaço desejado entre os botões
-  },
-  link: {
-    color: '#f72585',
   },
 };
 
